@@ -1,0 +1,14 @@
+{
+  "name": "ads-clean",
+  "version": "1.0.0",
+  "description": "Inject script and clean up.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jixun Moe",
+  "license": "MIT",
+  "devDependencies": {
+    "uglifyjs": "^2.4.10"
+  }
+}

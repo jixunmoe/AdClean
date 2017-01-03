@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+    background: #f7f7f7;
+    font-family: 'Microsoft YaHei UI', 'Microsoft JHengHei UI', sans-serif;
+}
+
+code, pre {
+    font-family:"Source Code Pro", monospace;
+}
+
+/* 小屏幕 如手机 */
+@media (max-width: 767px) {
+    .main {
+        padding: 1em 1em;
+    }
+}
+
+/* 大屏幕 如电脑 */
+@media (min-width: 768px) {
+    body {
+        min-height: 100vh;
+
+        /* 居中 */
+        display: flex;
+        justify-content: center;
+    }
+    
+    .container {
+        max-width: 420px;
+    }
+
+    .main {
+        padding: 1em 2em;
+    }
+
+    h1 {
+        margin: 0;
+    }
+}
+
+.main {
+    border-top: 0;
+    border-bottom: 0;
+    background: #fff;
+    box-shadow: 1px 1px 15px 2px rgba(55,55,55,.6);
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+p, h1 {
+    text-align: center;
+}
+
+.plus {
+    border: 1px solid #777;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    margin-right: 2px;
+}
+
+.footer {
+    text-align: right;
+    font-size: 80%;
+    color: #ccc;
+    padding-right: 2em;
+}
+
+.footer a {
+    color: #ccc;
+    text-decoration: none;
+    border-bottom: 1px dotted #ccc;
+}
+
+ul, ol {
+    padding-left: 1em;
+}
+
+.last-item {
+    margin-bottom: 0;
+}
+
+p, ul, ol {
+    margin: .5em 0;
+}

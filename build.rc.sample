@@ -1,0 +1,5 @@
+# Block ip
+block_server=127.0.0.1
+
+# Redirection ip (Your server ip)
+redir_server=10.1.1.1

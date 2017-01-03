@@ -1,0 +1,25 @@
+# 33yq 手机版
+# http://m.33yq.com/waptpl/js/wap.js
+redir p.tanx.com
+redir p.tanx.com
+
+# - 随机广告
+block m.twldmx.com
+block s.xhsxgmt.cn
+block baby.yf898.com
+
+# - 统计信息
+block s95.cnzz.com
+
+
+
+# lwxs.com
+
+# - 统计信息
+block s23.cnzz.com
+
+
+
+# m.69shu.com
+block s4.cnzz.com
+redir pagead2.googlesyndication.com
