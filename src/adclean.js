@@ -1,21 +1,34 @@
-;(function (document, window, hostname, blankFunction) {
-  var each = Array.prototype.forEach;
+;(function (document, window, hostname, blankFunction, addEventListener, each) {
+  addEventListener('DOMContentLoaded', removeAd);
+  addEventListener('Load', removeAd);
 
   // 根据当前访问域名判定要使用的代码
-  switch (hostname) {
-    case 'm.lwxs.com':
-      removeTanx();
-      removeMethods(['qijixs_top', 'qijixs_middle', 'qijixs_bottom']);
-      break;
+  function removeAd () {
+    switch (hostname) {
+      case 'm.lwxs.com':
+        removeTanx();
+        removeMethods(['qijixs_top', 'qijixs_middle', 'qijixs_bottom']);
+        break;
 
-    case 'm.33yq.com':
-      removeTanx();
-      removeMethods(['nryhf', 'qijixs_middle', 'qijixs_bottom', 'qijixs_dingbuxuanfu']);
-      break;
+      case 'm.33yq.com':
+        removeTanx();
+        removeMethods(['nryhf', 'qijixs_middle', 'qijixs_bottom', 'qijixs_dingbuxuanfu']);
+        break;
 
-    case 'm.69shu.com':
-      removeGoogleAds();
-      break;
+      case 'm.69shu.com':
+        removeGoogleAds();
+        break;
+
+      case 'yimuhe.com':
+      case 'www.yimuhe.com':
+        showYimuheCode();
+        break;
+    }
+  }
+
+  function showYimuheCode () {
+    var yzm = document.getElementById('yzm');
+    if (yzm) yzm.style.display = 'block';
   }
 
   // 移除 tanx.com 广告的展位块
@@ -46,16 +59,20 @@
     });
   }
 
+  function appendStyle (cssText) {
+    var s = document.createElement('style');
+    s.textContent = cssText;
+    document.head.appendChild(s);
+  }
+
   // 移除谷歌广告的空格
   function removeGoogleAds () {
-    var s = document.createElement('style');
-    s.textContent = '.adsbygoogle{display:none !important}';
-    document.head.appendChild(s);
-
+    appendStyle('.adsbygoogle{display:none !important}');
     each.call(document.getElementsByClassName('adsbygoogle'), function (b) {
       b.parentNode.removeChild(b);
     });
   }
 })(document, window, location.hostname,
-  function /* blank function */() {}
+  function /* blank function */() {},
+  addEventListener, Array.prototype.forEach
 );

@@ -7,7 +7,7 @@
 
     var $copy = document.getElementById('copy');
     var clipboard = new window.Clipboard($copy, {
-        text: function(trigger) {
+        text: function() {
             return $copy.href;
         }
     });
