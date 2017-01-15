@@ -1,7 +1,10 @@
 ;(function (document, window, hostname, blankFunction, addEventListener, each) {
   addEventListener('Load', removeAd);
   addEventListener('DOMContentLoaded', removeAd);
-  removeAd();
+  if (document.readyState == 'complete') {
+    removeAd();
+  }
+
 
   // 根据当前访问域名判定要使用的代码
   function removeAd () {
@@ -32,7 +35,7 @@
 
       // 电脑版
       case 'www.mianhuatang.la':
-        $(mianhuatang);
+        mianhuatang();
         break;
 
       // 手机版
@@ -52,8 +55,8 @@
   }
 
   function mianhuatang () {
-    $('.top_ad, .tuijian, .footer_link, .readshujia').remove();
-    $(mianhuatang_content()).find('a,p,div,strong').remove();
+    each.call(document.querySelectorAll('.top_ad, .tuijian, .footer_link, .readshujia'), removeElement);
+    each.call(mianhuatang_content().querySelectorAll('a,p,div,strong'), removeElement);
   }
 
   function mianhuatang_mobile () {
