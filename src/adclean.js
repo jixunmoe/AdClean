@@ -34,33 +34,24 @@
         break;
 
       // 电脑版
-      case 'www.mianhuatang.la':
-        mianhuatang();
-        break;
-
       // 手机版
+      case 'www.mianhuatang.la':
       case 'm.mianhuatang.la':
-        mianhuatang_mobile();
+        removeAll('.top_ad,.tuijian,.footer_link,.readshujia');
+        mianhuatang_content();
         break;
     }
   }
 
   function mianhuatang_content () {
     var $content = document.getElementsByClassName('content')[0];
-    each.call($content.getElementsByTagName('script'), removeElement);
+    if (!$content) return ;
+    
+    removeAll('script,a,p,div,strong', $content);
+
     $content.innerHTML = $content.innerHTML
       .replace(/[\[\(（].*?(广告|棉花糖|mianhuatang).*?[\]\)）]/gi, '')
       .replace(/『(.)』/gi, '$1');
-    return $content;
-  }
-
-  function mianhuatang () {
-    each.call(document.querySelectorAll('.top_ad, .tuijian, .footer_link, .readshujia'), removeElement);
-    each.call(mianhuatang_content().querySelectorAll('a,p,div,strong'), removeElement);
-  }
-
-  function mianhuatang_mobile () {
-    mianhuatang_content();
   }
 
   function showYimuheCode () {
@@ -108,11 +99,15 @@
   // 移除谷歌广告的空格
   function removeGoogleAds () {
     appendStyle('.adsbygoogle{display:none !important}');
-    each.call(document.getElementsByClassName('adsbygoogle'), removeElement);
+    removeAll('.adsbygoogle');
   }
 
   function removeElement (el) {
     if (el) el.parentNode.removeChild(el);
+  }
+
+  function removeAll (query, el) {
+    each.call((el || document).querySelectorAll(query), removeElement);
   }
 })(document, window, location.hostname,
   function /* blank function */() {},
