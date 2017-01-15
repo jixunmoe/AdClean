@@ -33,3 +33,16 @@ block nsclick.baidu.com
 block s5.cnzz.com
 
 
+################################################################################
+# www.mianhuatang.la
+
+redir cpro.baidustatic.com
+
+block hm.baidu.com
+block bdimg.share.baidu.com
+block s.fthcz.com
+
+# 从被黑(?)掉的页面跳到小说页面
+block js.users.51.la
+redir count4.51yes.com
+redir count5.51yes.com

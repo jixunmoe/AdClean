@@ -1,6 +1,7 @@
 ;(function (document, window, hostname, blankFunction, addEventListener, each) {
-  addEventListener('DOMContentLoaded', removeAd);
   addEventListener('Load', removeAd);
+  addEventListener('DOMContentLoaded', removeAd);
+  removeAd();
 
   // 根据当前访问域名判定要使用的代码
   function removeAd () {
@@ -23,7 +24,40 @@
       case 'www.yimuhe.com':
         showYimuheCode();
         break;
+
+      // 怀疑网站被人搞了
+      case 'mianhuatang.la':
+        location.host = 'www.mianhuatang.la';
+        break;
+
+      // 电脑版
+      case 'www.mianhuatang.la':
+        $(mianhuatang);
+        break;
+
+      // 手机版
+      case 'm.mianhuatang.la':
+        mianhuatang_mobile();
+        break;
     }
+  }
+
+  function mianhuatang_content () {
+    var $content = document.getElementsByClassName('content')[0];
+    each.call($content.getElementsByTagName('script'), removeElement);
+    $content.innerHTML = $content.innerHTML
+      .replace(/[\[\(（].*?(广告|棉花糖|mianhuatang).*?[\]\)）]/gi, '')
+      .replace(/『(.)』/gi, '$1');
+    return $content;
+  }
+
+  function mianhuatang () {
+    $('.top_ad, .tuijian, .footer_link, .readshujia').remove();
+    $(mianhuatang_content()).find('a,p,div,strong').remove();
+  }
+
+  function mianhuatang_mobile () {
+    mianhuatang_content();
   }
 
   function showYimuheCode () {
@@ -37,8 +71,11 @@
     var tanx = document.querySelectorAll('div>a[id^="tanx"]');
     each.call(tanx, function (t) {
       var parentStyle = t.parentNode.style;
-      if (parentStyle.cssText.indexOf('margin') != -1)
+      if (parentStyle.cssText.indexOf('margin') != -1) {
         parentStyle.display = "none";
+      } else {
+        removeElement(t);
+      }
     });
 
     window.qijixs_bottom = function () {};
@@ -68,9 +105,11 @@
   // 移除谷歌广告的空格
   function removeGoogleAds () {
     appendStyle('.adsbygoogle{display:none !important}');
-    each.call(document.getElementsByClassName('adsbygoogle'), function (b) {
-      b.parentNode.removeChild(b);
-    });
+    each.call(document.getElementsByClassName('adsbygoogle'), removeElement);
+  }
+
+  function removeElement (el) {
+    if (el) el.parentNode.removeChild(el);
   }
 })(document, window, location.hostname,
   function /* blank function */() {},
